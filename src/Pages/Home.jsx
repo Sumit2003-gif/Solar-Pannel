@@ -11,7 +11,7 @@ import HomeBlogSection from '../Components/HomeBLogSection'
 
 const Home = () => {
   return (
-    <div>
+    <div className='overflow-hidden'>
       <section>
         <HomeHero/>
       </section>
