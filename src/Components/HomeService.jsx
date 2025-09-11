@@ -7,14 +7,14 @@ const services = [
     id: 1,
     title: 'Solar Panel Installation',
     text: 'We specialize in expert installation of high-efficiency solar panels designed to meet your energy needs. Our team ensures proper setup, maximum sun exposure, and long-term reliability for both homes and businesses.',
-    image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.pexels.com/photos/9875408/pexels-photo-9875408.jpeg',
     icon: <FaSolarPanel size={40} className="text-orange-500" />,
   },
   {
     id: 2,
     title: 'Energy Storage Solutions',
     text: 'Harness the power of the sun even after sunset. Our advanced battery storage systems allow you to store excess solar energy during the day and use it whenever you need it—especially during peak hours or outages.',
-    image: 'https://images.unsplash.com/photo-1579370318448-d9e0e986d3d8?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.pexels.com/photos/4320481/pexels-photo-4320481.jpeg',
     icon: <FaBolt size={40} className="text-yellow-400" />,
   },
   {

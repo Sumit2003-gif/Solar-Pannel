@@ -1,7 +1,7 @@
 export const blogData = [
   {
     id: 1,
-    image: 'https://images.unsplash.com/photo-1509395176047-4a66953fd231?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.pexels.com/photos/9800036/pexels-photo-9800036.jpeg',
     title: 'Understanding Solar Panel Efficiency',
     description: 'Explore how solar panels convert sunlight into electricity and what affects their efficiency.',
     category: 'Solar Panels',
@@ -9,7 +9,7 @@ export const blogData = [
   },
   {
     id: 2,
-    image: 'https://images.unsplash.com/photo-1584270354949-1e446d16e2e2?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.pexels.com/photos/9875420/pexels-photo-9875420.jpeg',
     title: 'Designing Eco-Friendly Solar Homes',
     description: 'Learn how to integrate solar technology into modern home design for maximum sustainability.',
     category: 'Design',
@@ -17,7 +17,7 @@ export const blogData = [
   },
   {
     id: 3,
-    image: 'https://images.unsplash.com/photo-1599384651263-7e7bde41ef3c?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.pexels.com/photos/8853507/pexels-photo-8853507.jpeg',
     title: 'New Innovations in Solar Technology 2025',
     description: 'Stay ahead with the latest advancements in solar energy tech and what they mean for the future.',
     category: 'Technology',
@@ -25,7 +25,7 @@ export const blogData = [
   },
   {
     id: 4,
-    image: 'https://images.unsplash.com/photo-1573566472939-884b8a2108e5?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.pexels.com/photos/9875444/pexels-photo-9875444.jpeg',
     title: 'Building Scalable Solar Energy Systems',
     description: 'Best practices for designing and deploying scalable solar power solutions.',
     category: 'Engineering',
@@ -33,7 +33,7 @@ export const blogData = [
   },
   {
     id: 5,
-    image: 'https://images.unsplash.com/photo-1611186871348-bf7d0e49641c?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.pexels.com/photos/7527879/pexels-photo-7527879.jpeg',
     title: 'Solar Panel Placement: Roof vs Ground',
     description: 'Understand the pros and cons of different solar panel installation strategies.',
     category: 'Installation',
@@ -41,7 +41,7 @@ export const blogData = [
   },
   {
     id: 6,
-    image: 'https://images.unsplash.com/photo-1581090123565-1c581b82404b?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.pexels.com/photos/9875423/pexels-photo-9875423.jpeg',
     title: 'Battery Storage vs Grid-Tied Systems',
     description: 'Compare solar energy storage options and when to choose off-grid or hybrid setups.',
     category: 'Energy Storage',
@@ -49,7 +49,7 @@ export const blogData = [
   },
   {
     id: 7,
-    image: 'https://images.unsplash.com/photo-1524338198850-8a2ff63aacec?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.pexels.com/photos/7605826/pexels-photo-7605826.jpeg',
     title: 'Solar Incentives and Tax Credits Explained',
     description: 'Learn about financial incentives for switching to solar energy in 2025.',
     category: 'Finance',
@@ -57,7 +57,7 @@ export const blogData = [
   },
   {
     id: 8,
-    image: 'https://images.unsplash.com/photo-1509395176047-4a66953fd231?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.pexels.com/photos/4254157/pexels-photo-4254157.jpeg',
     title: 'Troubleshooting Common Solar Issues',
     description: 'Identify and fix common problems in residential solar energy systems.',
     category: 'Maintenance',
@@ -65,7 +65,7 @@ export const blogData = [
   },
   {
     id: 9,
-    image: 'https://images.unsplash.com/photo-1593080000171-1c53c51c3c14?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.pexels.com/photos/13205474/pexels-photo-13205474.jpeg',
     title: 'Maximizing Solar Energy Output',
     description: 'Tips and tricks to improve solar panel performance and efficiency.',
     category: 'Performance',

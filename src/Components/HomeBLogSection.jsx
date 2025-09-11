@@ -10,7 +10,7 @@ const blogs = [
     description:
       'Discover how solar power is transforming homes and reducing energy bills across the globe.',
     image:
-      'https://images.unsplash.com/photo-1509395176047-4a66953fd231?auto=format&fit=crop&w=800&q=80',
+      'https://images.pexels.com/photos/433308/pexels-photo-433308.jpeg',
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ const blogs = [
     description:
       'Store the sun. Learn how energy storage lets you power your home even when the sun goes down.',
     image:
-      'https://images.unsplash.com/photo-1593619511010-1acb8f8e9301?auto=format&fit=crop&w=800&q=80',
+      'https://images.pexels.com/photos/1254997/pexels-photo-1254997.jpeg',
   },
   {
     id: 3,
@@ -28,7 +28,7 @@ const blogs = [
     description:
       'Outages don’t have to stop your life. Here’s how to stay powered with solar + backup solutions.',
     image:
-      'https://images.unsplash.com/photo-1593968456003-3a8b664ce209?auto=format&fit=crop&w=800&q=80',
+      'https://images.pexels.com/photos/6572421/pexels-photo-6572421.jpeg',
   },
 ];
 
@@ -41,17 +41,17 @@ const fadeUpVariant = {
   }),
 };
 
-const BlogCard = ({id, title, date, description, image, custom }) => {
+// BlogCard Component
+const BlogCard = ({ id, title, date, description, image, custom }) => {
   return (
     <motion.div
-      className="relative bg-white rounded-xl overflow-hidden shadow-lg transition-shadow duration-300 group cursor-pointer"
+      className="flex flex-col bg-white rounded-xl overflow-hidden shadow-lg transition-shadow duration-300 group cursor-pointer min-h-[520px]"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
       variants={fadeUpVariant}
       custom={custom}
       style={{
-        // subtle black shading gradient inside card edges
         background:
           'linear-gradient(135deg, rgba(0,0,0,0.15) 0%, rgba(255,255,255,1) 40%, rgba(255,255,255,1) 60%, rgba(0,0,0,0.15) 100%)',
       }}
@@ -66,22 +66,30 @@ const BlogCard = ({id, title, date, description, image, custom }) => {
       </div>
 
       {/* Text Content */}
-      <div className="p-6 bg-white bg-opacity-90 group-hover:bg-opacity-100 transition-colors duration-300">
-        <p className="text-sm text-gray-600 group-hover:text-gray-800 mb-1">{date}</p>
-        <h3 className="text-2xl font-bold text-black group-hover:text-orange-500 transition-colors duration-300 mb-3">
-          {title}
-        </h3>
-        <p className="text-gray-700 group-hover:text-gray-900 mb-4">{description}</p>
-        <Link to={`/blog/${id}`}>
-        <button className="text-orange-500 cursor-pointer font-semibold hover:underline transition duration-200">
+      <div className="flex flex-col justify-between flex-grow p-6 bg-white bg-opacity-90 group-hover:bg-opacity-100 transition-colors duration-300">
+        <div>
+          <p className="text-sm text-gray-600 group-hover:text-gray-800 mb-1">{date}</p>
+          <h3 className="text-2xl font-bold text-black group-hover:text-orange-500 transition-colors duration-300 mb-3">
+            {title}
+          </h3>
+          <p className="text-gray-700 group-hover:text-gray-900 mb-4 line-clamp-3">
+            {description}
+          </p>
+        </div>
+
+        {/* Read More Button */}
+        <Link
+          to={`/blog/${id}`}
+          className="text-orange-500 font-semibold hover:underline transition duration-200 mt-auto"
+        >
           Read More →
-        </button>
         </Link>
       </div>
     </motion.div>
   );
 };
 
+// Main Section Component
 const HomeBlogSection = () => {
   return (
     <section className="bg-black py-20 px-6 md:px-16">
