@@ -4,13 +4,22 @@ import AboutValue from '../Components/AboutValue';
 import About_Journey from '../Components/About_Journey';
 import AboutTeam from '../Components/AboutTeam';
 
+const containerVariant = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.3,
+    },
+  },
+};
+
 const fadeScaleVariant = {
   hidden: { opacity: 0, scale: 0.95 },
-  visible: (custom = 0) => ({
+  visible: {
     opacity: 1,
     scale: 1,
-    transition: { delay: custom * 0.3, duration: 0.7, ease: 'easeOut' },
-  }),
+    transition: { duration: 0.7, ease: 'easeOut' },
+  },
 };
 
 const headingPulseVariant = {
@@ -36,11 +45,10 @@ const About = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.5 }}
-        variants={fadeScaleVariant}
-        custom={0}
+        variants={containerVariant}
       >
         <motion.h1
-          className="text-5xl font-extrabold text-orange-500"
+          className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-orange-500"
           initial="initial"
           animate="animate"
           variants={headingPulseVariant}
@@ -50,11 +58,11 @@ const About = () => {
       </motion.div>
 
       {/* Hero Section */}
-      <section className="relative h-[60vh] w-full">
+      <section className="relative h-[50vh] md:h-[60vh] w-full">
         <img
           src="https://enphase.com/sites/default/files/styles/max_2600x2600/public/2021-08/About-us-hero-image_0.jpg?itok=hfWGMER5"
           alt="About Enphase"
-          className="absolute inset-0 w-full h-full object-cover object-center opacity-30"
+          className="absolute inset-0 w-full h-full object-cover object-center opacity-20"
         />
         <motion.div
           className="relative z-10 flex items-center justify-center h-full px-4"
@@ -63,110 +71,88 @@ const About = () => {
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 1 }}
         >
-          <h1 className="text-4xl md:text-6xl font-bold text-white text-center drop-shadow-xl">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white text-center drop-shadow-xl">
             Powering a Sustainable Future
           </h1>
         </motion.div>
       </section>
 
-      {/* Content Section */}
-      <section className="max-w-5xl mx-auto px-6 py-20 space-y-14">
+      {/* Content Section with stagger children */}
+      <motion.section
+        className="max-w-5xl mx-auto px-6 py-20 space-y-14"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={containerVariant}
+      >
+        {/* Subsection 1 */}
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
           variants={fadeScaleVariant}
-          custom={0}
         >
           <motion.h2
             className="text-3xl font-semibold text-orange-500 mb-4"
-            initial="initial"
-            animate="animate"
-            variants={headingPulseVariant}
+            variants={fadeScaleVariant}
           >
             Our Purpose
           </motion.h2>
           <motion.h3
             className="text-2xl font-semibold text-white mb-4"
-            initial={{ opacity: 0, scale: 0.97 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.6 }}
+            variants={fadeScaleVariant}
           >
             Advancing a sustainable future for all
           </motion.h3>
           <motion.p
             className="text-gray-300 leading-relaxed max-w-3xl"
-            initial={{ opacity: 0, scale: 0.97 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.6, duration: 0.6 }}
+            variants={fadeScaleVariant}
           >
-            Founded in 2006, Enphase transformed the solar industry with its revolutionary microinverter technology, which turns sunlight into a safe, reliable, resilient and scalable source of energy to power our lives. Today, our intelligent microinverters work with virtually every solar panel made, and when paired with our award-winning smart battery technology, they create one of the industry’s best-performing clean energy systems.
+            Founded in 2006, Enphase transformed the solar industry with its revolutionary microinverter technology, which turns sunlight into a safe, reliable, resilient and scalable source of energy to power our lives. Today, our intelligent microinverters work with virtually every solar panel made, and when paired with our award‑winning smart battery technology, they create one of the industry’s best‑performing clean energy systems.
           </motion.p>
         </motion.div>
 
+        {/* Subsection 2 */}
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
           variants={fadeScaleVariant}
-          custom={1}
         >
           <motion.p
             className="text-gray-300 leading-relaxed max-w-3xl"
-            initial={{ opacity: 0, scale: 0.97 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4, duration: 0.6 }}
+            variants={fadeScaleVariant}
           >
-            The Enphase Energy System helps people make, use, save and sell their own power. This includes our industry-leading app, which provides unprecedented data and control in the palm of your hand. For the first time in the evolution of our centuries-old grid, people can get paid for the clean energy they produce and share with their communities, and build a new energy future that harnesses the sun. This clean, free, abundant source of energy can power our lives and ultimately help replace fossil fuels altogether.
+            The Enphase Energy System helps people make, use, save and sell their own power. This includes our industry‑leading app, which provides unprecedented data and control in the palm of your hand. For the first time in the evolution of our centuries‑old grid, people can get paid for the clean energy they produce and share with their communities, and build a new energy future that harnesses the sun. This clean, free, abundant source of energy can power our lives and ultimately help replace fossil fuels altogether.
           </motion.p>
         </motion.div>
 
+        {/* Subsection 3 */}
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
           variants={fadeScaleVariant}
-          custom={2}
         >
           <motion.p
-            className="text-gray-300 leading-relaxed max-w-3xl"
-            initial={{ opacity: 0, scale: 0.97 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4, duration: 0.6 }}
+            className="text-gray‑300 leading‑relaxed max‑w‑3xl"
+            variants={fadeScaleVariant}
           >
-            Today, if you see a home with solar panels on it, there’s a good chance it’s an Enphase home. Enphase has shipped approximately 83.1 million microinverters, and more than 4.9 million Enphase-based systems have been deployed in over 160 countries, helping millions of people gain access to clean, affordable, and reliable energy while creating good jobs and a more carbon-free future for everyone.
+            Today, if you see a home with solar panels on it, there’s a good chance it’s an Enphase home. Enphase has shipped approximately 83.1 million microinverters, and more than 4.9 million Enphase‑based systems have been deployed in over 160 countries, helping millions of people gain access to clean, affordable, and reliable energy while creating good jobs and a more carbon‑free future for everyone.
           </motion.p>
         </motion.div>
 
+        {/* Final statement */}
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
           variants={fadeScaleVariant}
-          custom={3}
         >
           <motion.h2
             className="text-2xl font-bold text-orange-500 mt-6 max-w-3xl"
-            initial="initial"
-            animate="animate"
-            variants={headingPulseVariant}
+            variants={fadeScaleVariant}
           >
             Enphase. Power by people
           </motion.h2>
         </motion.div>
-      </section>
+      </motion.section>
 
-      {/* Other sections with fade scale */}
+      {/* Other sections with better timing */}
       <motion.section
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
         variants={fadeScaleVariant}
-        custom={4}
+        className="px-6 pb-20"
       >
         <AboutValue />
       </motion.section>
@@ -176,7 +162,7 @@ const About = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
         variants={fadeScaleVariant}
-        custom={5}
+        className="px-6 pb-20"
       >
         <About_Journey />
       </motion.section>
@@ -186,7 +172,7 @@ const About = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
         variants={fadeScaleVariant}
-        custom={6}
+        className="px-6 pb-20"
       >
         <AboutTeam />
       </motion.section>

@@ -7,9 +7,11 @@ import Blog from './Pages/Blog'
 import Contact from './Pages/Contact'
 import Footer from './Pages/Footer'
 import SingleBlogPost from './Components/SingleBlog'
+import ScrollToTop from './Components/ScrollToTop'
 const App = () => {
   return (
     <div >
+      <ScrollToTop/>
       <Navbar/>
       <Routes>
         <Route path='/' element={<Home/>}/>
