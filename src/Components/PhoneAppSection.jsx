@@ -33,35 +33,22 @@ const PhoneAppSection = () => {
     AOS.init({ duration: 900, easing: 'ease-out-cubic', once: true });
   }, []);
 
-  // Use typewriter hook for the main heading (removing line breaks for typing)
-  const fullHeadingText = 'The power of the\nsun, at your fingertips';
-  // Replace newlines with spaces for typewriter (you can adjust)
-  const typewriterText = fullHeadingText.replace(/\n/g, ' ');
-  const typedHeading = useTypewriter(typewriterText, 60);
+  // Use typewriter hook for the main heading
+  const fullHeadingText = 'The power of the sun, at your fingertips';
+  const typedHeading = useTypewriter(fullHeadingText, 60);
 
-  // Split typed text back with <br /> after "sun," for formatting
-  const renderHeading = () => {
-    // Insert <br> after "sun," word
-    const parts = typedHeading.split('sun, ');
-    return (
-      <>
-        {parts[0]}sun,
-        <br />
-        {parts[1]}
-      </>
-    );
-  };
+  const renderHeading = () => <>{typedHeading}</>;
 
   return (
     <>
-      <section className="bg-black text-white py-28 px-8 md:px-24 flex flex-col md:flex-row items-center justify-between gap-16">
+      <section className="bg-black text-white py-28 px-6 sm:px-10 md:px-24 flex flex-col md:flex-row items-center justify-between gap-16">
         {/* LEFT - Image with overlay points */}
         <div
           className="relative w-full md:w-1/2 flex justify-center"
           data-aos="fade-up"
           data-aos-delay="100"
         >
-          <div className="relative w-[320px] sm:w-[380px] md:w-[420px] aspect-[9/16] rounded-2xl shadow-2xl overflow-hidden border-4 border-orange-600">
+          <div className="relative w-[280px] sm:w-[340px] md:w-[420px] aspect-[9/16] rounded-2xl shadow-2xl overflow-hidden border-4 border-orange-600">
             <img
               src="https://embed-ssl.wistia.com/deliveries/293e04944e004389c3e7cb2fa02dbf06916d81fe.webp?image_crop_resized=960x781"
               alt="App preview"
@@ -101,52 +88,33 @@ const PhoneAppSection = () => {
           >
             Enphase App
           </p>
+
           <h2
-            className="text-5xl sm:text-6xl font-extrabold leading-tight mb-10 text-white drop-shadow-[0_2px_8px_rgba(255,140,0,0.7)] min-h-[7rem]"
-            // No AOS because we use custom animation here
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-snug sm:leading-tight text-white drop-shadow-[0_2px_8px_rgba(255,140,0,0.7)] min-h-[4rem] sm:min-h-[6rem]"
           >
             {renderHeading()}
             <span className="blinking-cursor">|</span>
           </h2>
-          <p
-            className="text-lg text-white/90 leading-relaxed"
-            data-aos="fade-right"
-            data-aos-delay="500"
-          >
+
+          <p className="text-lg text-white/90 leading-relaxed" data-aos="fade-right" data-aos-delay="500">
             Control your Enphase system from virtually anywhere with the most powerful mobile app ever created for solar.
           </p>
-          <p
-            className="text-lg text-white/80 leading-relaxed"
-            data-aos="fade-right"
-            data-aos-delay="600"
-          >
+          <p className="text-lg text-white/80 leading-relaxed" data-aos="fade-right" data-aos-delay="600">
             See where your power is flowing in real time and view reports of your energy use over periods of time. Choose the essential appliances that absolutely need to stay on during an outage—or let our software decide for you.
           </p>
-          <p
-            className="text-lg text-white/80 leading-relaxed"
-            data-aos="fade-right"
-            data-aos-delay="700"
-          >
+          <p className="text-lg text-white/80 leading-relaxed" data-aos="fade-right" data-aos-delay="700">
             Stay prepared for outages with automatic weather monitoring and a full charge ahead of severe storms. In many communities, when you're not saving surplus electricity for your own use, you’ll be selling it back to your utility provider.
           </p>
-          <p
-            className="text-lg text-white/80 leading-relaxed"
-            data-aos="fade-right"
-            data-aos-delay="800"
-          >
+          <p className="text-lg text-white/80 leading-relaxed" data-aos="fade-right" data-aos-delay="800">
             That’s a lot of power packed into one little app.
           </p>
 
           {/* Buttons */}
-          <div
-            className="flex gap-6 flex-wrap"
-            data-aos="fade-up"
-            data-aos-delay="900"
-          >
+          <div className="flex gap-6 flex-wrap" data-aos="fade-up" data-aos-delay="900">
             <Link to="/contact">
-            <button className="px-8 cursor-pointer py-4 bg-gradient-to-r from-orange-500 to-yellow-400 text-black rounded-full font-semibold shadow-xl hover:from-yellow-400 hover:to-orange-500 transition duration-300 transform hover:scale-105">
-              Get Contact
-            </button>
+              <button className="px-8 cursor-pointer py-4 bg-gradient-to-r from-orange-500 to-yellow-400 text-black rounded-full font-semibold shadow-xl hover:from-yellow-400 hover:to-orange-500 transition duration-300 transform hover:scale-105">
+                Get Contact
+              </button>
             </Link>
             <button
               onClick={() => setIsModalOpen(true)}
@@ -184,7 +152,7 @@ const PhoneAppSection = () => {
         </div>
       )}
 
-      {/* Extra CSS for fadeIn, fadeUp, blinking cursor */}
+      {/* Extra CSS for animations and cursor */}
       <style>
         {`
           @keyframes fadeIn {
