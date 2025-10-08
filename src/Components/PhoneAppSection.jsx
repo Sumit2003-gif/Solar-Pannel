@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Link } from 'react-router-dom';
+import { FiX, FiPlay, FiLoader } from 'react-icons/fi';
 
 const infoPoints = [
   { text: '1.1 kW\nProducing', color: 'text-orange-400', top: '28%', left: '50%' },
@@ -11,37 +12,96 @@ const infoPoints = [
 ];
 
 // Custom hook for typewriter effect
-function useTypewriter(text, speed = 100) {
+function useTypewriter(text, speed = 100, restartTrigger) {
   const [displayedText, setDisplayedText] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
+  
   useEffect(() => {
-    let currentIndex = 0;
-    const interval = setInterval(() => {
-      setDisplayedText((prev) => prev + text[currentIndex]);
-      currentIndex++;
-      if (currentIndex === text.length) clearInterval(interval);
+    setDisplayedText('');
+    setCurrentIndex(0);
+  }, [restartTrigger]);
+
+  useEffect(() => {
+    if (currentIndex >= text.length) return;
+    
+    const timeout = setTimeout(() => {
+      setDisplayedText(prev => prev + text[currentIndex]);
+      setCurrentIndex(prev => prev + 1);
     }, speed);
-    return () => clearInterval(interval);
-  }, [text, speed]);
+    
+    return () => clearTimeout(timeout);
+  }, [currentIndex, text, speed]);
 
   return displayedText;
 }
 
 const PhoneAppSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [typewriterRestart, setTypewriterRestart] = useState(0);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
     AOS.init({ duration: 900, easing: 'ease-out-cubic', once: true });
+    
+    // Intersection Observer to restart typewriter when section comes into view
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTypewriterRestart(prev => prev + 1);
+        }
+      },
+      { threshold: 0.5 }
+    );
+    
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+    
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
   }, []);
 
   // Use typewriter hook for the main heading
-  const fullHeadingText = 'The power of the sun, at your fingertips';
-  const typedHeading = useTypewriter(fullHeadingText, 60);
+  const fullHeadingText = 'The power of the sun';
+  const typedHeading = useTypewriter(fullHeadingText, 60, typewriterRestart);
+
+  const handleVideoLoad = () => {
+    setIsVideoLoaded(true);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Escape' && isModalOpen) {
+      setIsModalOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden';
+      window.addEventListener('keydown', handleKeyDown);
+    } else {
+      document.body.style.overflow = 'auto';
+      window.removeEventListener('keydown', handleKeyDown);
+    }
+    
+    return () => {
+      document.body.style.overflow = 'auto';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isModalOpen]);
 
   const renderHeading = () => <>{typedHeading}</>;
 
   return (
     <>
-      <section className="bg-black text-white py-28 px-6 sm:px-10 md:px-24 flex flex-col md:flex-row items-center justify-between gap-16">
+      <section 
+        ref={sectionRef}
+        className="bg-black text-white py-16 sm:py-20 md:py-28 px-4 sm:px-6 md:px-10 lg:px-24 flex flex-col md:flex-row items-center justify-between gap-10 lg:gap-16"
+      >
         {/* LEFT - Image with overlay points */}
         <div
           className="relative w-full md:w-1/2 flex justify-center"
@@ -110,16 +170,17 @@ const PhoneAppSection = () => {
           </p>
 
           {/* Buttons */}
-          <div className="flex gap-6 flex-wrap" data-aos="fade-up" data-aos-delay="900">
-            <Link to="/contact">
-              <button className="px-8 cursor-pointer py-4 bg-gradient-to-r from-orange-500 to-yellow-400 text-black rounded-full font-semibold shadow-xl hover:from-yellow-400 hover:to-orange-500 transition duration-300 transform hover:scale-105">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6" data-aos="fade-up" data-aos-delay="900">
+            <Link to="/contact" className="flex-1">
+              <button className="w-full px-8 py-4 bg-gradient-to-r from-orange-500 to-yellow-400 text-black rounded-full font-semibold shadow-xl hover:from-yellow-400 hover:to-orange-500 transition duration-300 transform hover:scale-105 flex items-center justify-center">
                 Get Contact
               </button>
             </Link>
             <button
               onClick={() => setIsModalOpen(true)}
-              className="px-8 py-4 border-2 cursor-pointer border-orange-500 text-orange-500 rounded-full font-semibold hover:bg-orange-500 hover:text-black transition duration-300 transform hover:scale-105"
+              className="w-full flex-1 px-8 py-4 border-2 border-orange-500 text-orange-500 rounded-full font-semibold hover:bg-orange-500 hover:text-black transition duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
             >
+              <FiPlay className="text-lg" />
               Watch App Preview
             </button>
           </div>
@@ -129,10 +190,19 @@ const PhoneAppSection = () => {
       {/* MODAL OVERLAY */}
       {isModalOpen && (
         <div
-          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-6 animate-fadeIn"
+          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 animate-fadeIn"
           style={{ animationDuration: '0.4s' }}
+          onClick={() => setIsModalOpen(false)}
         >
-          <div className="relative w-full max-w-4xl aspect-video rounded-xl overflow-hidden shadow-2xl border-4 border-orange-500">
+          <div 
+            className="relative w-full max-w-4xl aspect-video rounded-xl overflow-hidden shadow-2xl border-4 border-orange-500"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {!isVideoLoaded && (
+              <div className="absolute inset-0 bg-black flex items-center justify-center">
+                <FiLoader className="text-orange-500 text-4xl animate-spin" />
+              </div>
+            )}
             <iframe
               className="w-full h-full"
               src="https://www.youtube.com/embed/qbKCe4c7e2U?autoplay=1&rel=0&modestbranding=1"
@@ -140,13 +210,14 @@ const PhoneAppSection = () => {
               frameBorder="0"
               allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
+              onLoad={handleVideoLoad}
             />
             <button
               onClick={() => setIsModalOpen(false)}
-              className="absolute -top-6 -right-6 bg-orange-500 text-black w-12 h-12 rounded-full text-3xl font-bold shadow-lg hover:bg-orange-600 transition flex items-center justify-center"
-              aria-label="Close"
+              className="absolute top-4 right-4 bg-black/70 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-orange-500 transition-colors duration-300"
+              aria-label="Close video"
             >
-              ×
+              <FiX className="text-xl" />
             </button>
           </div>
         </div>

@@ -55,7 +55,7 @@ const HomeMain = () => {
       <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-10">
         {/* Image */}
         <motion.div
-          className="w-full lg:w-1/2"
+          className="w-full hidden lg:block lg:w-1/2"
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.3 }}
